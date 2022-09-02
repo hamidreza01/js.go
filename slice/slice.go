@@ -20,15 +20,6 @@ func (s *Slice[T]) Map(f func(index int, value T) T) *Slice[T] {
 	return s
 }
 
-func Includes[T comparable](s Slice[T], value T) bool {
-	for _, v := range s {
-		if v == value {
-			return true
-		}
-	}
-	return false
-}
-
 func (s *Slice[T]) Filter(f func(index int, value T) bool) *Slice[T] {
 	for i, v := range *s {
 		if f(i, v) {
@@ -102,4 +93,22 @@ func (s *Slice[T]) Reduce(f func(total T, current T) T) T {
 
 func Join(s Slice[string], sep string) string {
 	return strings.Join(s, sep)
+}
+
+func Includes[T comparable](s Slice[T], value T) bool {
+	for _, v := range s {
+		if v == value {
+			return true
+		}
+	}
+	return false
+}
+
+func IndexOf[T comparable](s Slice[T], value T) int {
+	for i, v := range s {
+		if v == value {
+			return i
+		}
+	}
+	return -1
 }

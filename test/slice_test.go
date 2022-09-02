@@ -1,8 +1,9 @@
 package test
 
 import (
-	"github.com/hamidreza01/js.go/slice"
 	"testing"
+
+	"github.com/hamidreza01/js.go/slice"
 )
 
 func TestPush(t *testing.T) {
@@ -171,5 +172,26 @@ func TestJoin(t *testing.T) {
 	s2 := slice.Join(s, " ")
 	if s2 != "Hello World" {
 		t.Errorf("`slice.Slice.Join` method is not working properly, out : %v", s2)
+	}
+}
+
+func TestReduce(t *testing.T) {
+	s := slice.Slice[int]{
+		5, 5, 5, 5,
+	}
+	i := s.Reduce(func(total, current int) int {
+		return total + current
+	})
+	if i != 20 {
+		t.Errorf("`slice.Slice.Reduce` method is not working properly, out : %v", i)
+	}
+}
+
+func TestIndexOf(t *testing.T) {
+	s := slice.Slice[string]{
+		"hamid", "mahdi",
+	}
+	if slice.IndexOf(s, "mahdi") != 1 && slice.IndexOf(s, "hossein") != -1 {
+		t.Errorf("`slice.Slice.IndexOf` method is not working properly")
 	}
 }
