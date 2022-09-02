@@ -195,3 +195,13 @@ func TestIndexOf(t *testing.T) {
 		t.Errorf("`slice.Slice.IndexOf` method is not working properly")
 	}
 }
+
+func TestFill(t *testing.T) {
+	s := make(slice.Slice[string], 10)
+	s.Fill("hamid")
+	s.ForEach(func(index int, value string) {
+		if value != "hamid" {
+			t.Errorf("`slice.Slice.Fill` method is not working properly, out : %v", s)
+		}
+	})
+}

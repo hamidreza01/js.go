@@ -64,6 +64,13 @@ func (s *Slice[T]) Remove(index int) *Slice[T] {
 	return s
 }
 
+func (s *Slice[T]) Fill(value T) *Slice[T] {
+	for i := range *s {
+		(*s)[i] = value
+	}
+	return s
+}
+
 func (s *Slice[T]) Find(f func(index int, value T) bool) (value T, err error) {
 	for i, v := range *s {
 		if f(i, v) {
