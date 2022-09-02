@@ -1,9 +1,10 @@
 package test
 
 import (
+	"testing"
+
 	"github.com/hamidreza01/js.go/slice"
 	"github.com/hamidreza01/js.go/str"
-	"testing"
 )
 
 func TestSplit(t *testing.T) {
@@ -13,3 +14,7 @@ func TestSplit(t *testing.T) {
 		t.Errorf("`str.String.Split` method is not working properly, out : %v", sl)
 	}
 }
+
+// func TestStartWith(t *testing.T) {
+
+// }
