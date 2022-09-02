@@ -205,3 +205,21 @@ func TestFill(t *testing.T) {
 		}
 	})
 }
+
+func TestSlice(t *testing.T) {
+	s := slice.Slice[string]{
+		"a", "b", "c", "d", "e",
+	}
+	s2 := s.Slice(2, 4)
+	if s2[0] != "c" && s2[1] != "d" {
+		t.Errorf("`slice.Slice.Slice` method is not working properly, out : %v", s)
+	}
+}
+
+func TestReverse(t *testing.T) {
+	s := slice.Slice[int]{1, 2}
+	s.Reverse()
+	if s[0] != 2 && s[1] != 1 {
+		t.Errorf("`slice.Slice.Reverse` method is not working properly, out : %v", s)
+	}
+}

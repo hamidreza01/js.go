@@ -64,6 +64,17 @@ func (s *Slice[T]) Remove(index int) *Slice[T] {
 	return s
 }
 
+func (s *Slice[T]) Reverse() *Slice[T] {
+	for i, j := 0, len(*s)-1; i < j; i, j = i+1, j-1 {
+		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
+	}
+	return s
+}
+
+func (s *Slice[T]) Slice(i1 int, i2 int) Slice[T] {
+	return (*s)[i1:i2]
+}
+
 func (s *Slice[T]) Fill(value T) *Slice[T] {
 	for i := range *s {
 		(*s)[i] = value
@@ -95,7 +106,6 @@ func (s *Slice[T]) Reduce(f func(total T, current T) T) T {
 		total = f(total, v)
 	}
 	return total
-
 }
 
 func Join(s Slice[string], sep string) string {
