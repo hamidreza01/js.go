@@ -227,7 +227,23 @@ func TestReverse(t *testing.T) {
 func TestPop(t *testing.T) {
 	s := slice.Slice[int]{1, 2}
 	s.Pop()
-	if len(s) > 1 {
+	if len(s) > 1 && s[0] != 1 {
 		t.Errorf("`slice.Slice.Pop` method is not working properly, out : %v", s)
+	}
+}
+
+func TestShift(t *testing.T) {
+	s := slice.Slice[int]{1, 2}
+	s.Shift()
+	if len(s) > 1 && s[0] != 2 {
+		t.Errorf("`slice.Slice.Shift` method is not working properly, out : %v", s)
+	}
+}
+
+func TestUnshift(t *testing.T) {
+	s := slice.Slice[int]{1}
+	i := s.Unshift(0)
+	if i != 3 && s[0] != 0 {
+		t.Errorf("`slice.Slice.Shift` method is not working properly, out : %v, %v", i, s)
 	}
 }

@@ -1,8 +1,9 @@
 package benchmark
 
 import (
-	"github.com/hamidreza01/js.go/slice"
 	"testing"
+
+	"github.com/hamidreza01/js.go/slice"
 )
 
 func BenchmarkTestPush(t *testing.B) {
@@ -30,11 +31,9 @@ func BenchmarkTestFilter(t *testing.B) {
 	}
 }
 
-func BenchmarkTestEvery(t *testing.B) {
-	s := slice.Slice[int]{5, 5, 1, 15, 100, 1000, 500, 650, 10, 5, 100}
+func BenchmarkTestUnshift(t *testing.B) {
+	s := slice.Slice[int]{1, 2}
 	for i := 0; i < t.N; i++ {
-		s.Every(func(_ int, v int) bool {
-			return v >= 10000
-		})
+		s.Unshift(1)
 	}
 }

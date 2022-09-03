@@ -69,6 +69,11 @@ func (s *Slice[T]) Pop() *Slice[T] {
 	return s
 }
 
+func (s *Slice[T]) Shift() *Slice[T] {
+	*s = (*s)[1:]
+	return s
+}
+
 func (s *Slice[T]) Reverse() *Slice[T] {
 	for i, j := 0, len(*s)-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
@@ -103,6 +108,11 @@ func (s *Slice[T]) FindIndex(f func(index int, value T) bool) int {
 		}
 	}
 	return -1
+}
+
+func (s *Slice[T]) Unshift(value T) int {
+	*s = append(Slice[T]{value}, *s...)
+	return len(*s)
 }
 
 func (s *Slice[T]) Reduce(f func(total T, current T) T) T {
