@@ -64,6 +64,11 @@ func (s *Slice[T]) Remove(index int) *Slice[T] {
 	return s
 }
 
+func (s *Slice[T]) Pop() *Slice[T] {
+	*s = (*s)[:len(*s)-1]
+	return s
+}
+
 func (s *Slice[T]) Reverse() *Slice[T] {
 	for i, j := 0, len(*s)-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]

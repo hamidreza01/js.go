@@ -223,3 +223,11 @@ func TestReverse(t *testing.T) {
 		t.Errorf("`slice.Slice.Reverse` method is not working properly, out : %v", s)
 	}
 }
+
+func TestPop(t *testing.T) {
+	s := slice.Slice[int]{1, 2}
+	s.Pop()
+	if len(s) > 1 {
+		t.Errorf("`slice.Slice.Pop` method is not working properly, out : %v", s)
+	}
+}
